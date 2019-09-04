@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Vant from 'vant'
+import 'vant/lib/index.css'
+import './style/index.less'
+Vue.use(Vant) // 注册插件
 
 Vue.config.productionTip = false
 
