@@ -1,6 +1,8 @@
 import axios from 'axios'
 import JSONbig from 'json-bigint'
+import store from '@/store'
 
+// axios 请求 拦截  对 axios 进行处理
 // 创建一个axios实例 设置不同的baseURL
 const instance = axios.create({
   timeout: 5000,
@@ -19,6 +21,9 @@ instance.defaults.transformResponse = [function (data) {
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
+  if (store.state.user) {
+    config.headers.Authorization = `Bearer ${store.state.user.token}`
+  }
   return config
 }, function (error) {
   // Do something with request error
